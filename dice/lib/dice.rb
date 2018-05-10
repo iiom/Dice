@@ -1,10 +1,11 @@
-require_relative 'game/main'
-require_relative 'game/roll'
+require_relative 'dice/main'
+# require_relative 'dice/roll'
 
 module Dice
 
   def self.create
     Main.new
+    # Roll.new
   end
 end
 
