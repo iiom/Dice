@@ -8,28 +8,4 @@ module Dice
 end
 
  gamer = Dice.create
- puts "#{gamer.roll.check_roll}"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- # puts "ставка игрока - #{gamer.rate}"
- # puts "текущий банк -  #{gamer.current_bank}"
- # puts "всего ходов  #{gamer.stack}"
+ puts "#{gamer.check_roll}"
