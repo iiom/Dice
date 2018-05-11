@@ -9,8 +9,7 @@ module Dice
     @roll = Roll.new
     end
 
-a=Main.new
-p a.roll.check_roll
+
 
 
 end
