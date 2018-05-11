@@ -13,17 +13,19 @@ module Dice
       @error.nil? ? true : false
     end
 
-    private
+    # private
 
     def clear_error!
       @error = nil
     end
 
     def check_current_bank!
-      @error = "Гамовер. Сушите вёсла. Бегите в банк" if @roll.current_bank <= 0
-   end
-   def check_current_bank!
-     @error = "Ай красавчеге. Дай я тебя расцелую дорогой" if @roll.current_bank >= @roll.bank*1.2
-   end
+      if @roll.current_bank <= 0
+        @error = "Гамовер. Сушите вёсла. Бегите в банк"
+      elsif
+        @roll.current_bank >= @roll.bank*1.2
+        @error = "Ай красавчеге. Дай я тебя расцелую дорогой"
+      end
+     end
   end
 end
