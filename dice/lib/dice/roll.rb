@@ -22,7 +22,6 @@ def check_roll_and_rate               # метод сравнения ставк
   end
   end
 
-end
 
 def roll_dice
   dice1 = rand 1..6                      # выпадение случайного числа первого кубика
@@ -42,12 +41,8 @@ end
 
 
 end
-end
 # a=Dice::Roll.new
-#
-#
 # puts a.roll_dice
 # p a.rate
 # puts a.check_roll_and_rate
 # p a.current_bank
-# p dice1

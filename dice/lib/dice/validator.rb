@@ -1,12 +1,7 @@
 module Dice
   module Validator
 
-    attr_accessor :error, :current_bank, :bank
-
-    def initialize
-      @bank = 40
-      @current_bank = @bank
-    end
+    attr_accessor :error
 
     def valid? *args
       clear_error!
@@ -18,20 +13,17 @@ module Dice
       @error.nil? ? true : false
     end
 
-    # private
+    private
 
     def clear_error!
       @error = nil
     end
 
     def check_current_bank!
-      @error = "Гамовер. Сушите вёсла. Бегите в банк" if @current_bank <= 0
+      @error = "Гамовер. Сушите вёсла. Бегите в банк" if @roll.current_bank <= 0
    end
-
    def check_current_bank!
-     @error = "Ай красавчеге. Дай я тебя расцелую дорогой" if @current_bank >= @bank*1.2
+     @error = "Ай красавчеге. Дай я тебя расцелую дорогой" if @roll.current_bank >= @roll.bank*1.2
    end
-
-
   end
 end
