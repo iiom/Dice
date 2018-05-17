@@ -7,5 +7,5 @@ module Game
 end
 
 game = Game.create
-
+# p game.user_bit
 game.auto_play

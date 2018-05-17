@@ -3,9 +3,9 @@ require_relative 'validator'
 
 class Casino
   include Validator
-
+attr_accessor :user_bit, :user_bank
   def initialize
-    @user_bit = user_bit
+    # @user_bit = user_bit
     @dice = Dice.new
     @user_bank = 50
     @win_rule = @user_bank*1.2
@@ -35,5 +35,7 @@ class Casino
     end
   end
 end
- a = Casino.new
-p a.check_user_bit(user_bit, @user_bank)
+#   a = Casino.new
+# p  b = Dice.new
+# # p a.check_user_bit(@user_bit, @user_bank)
+# p @dice.roll_dice
