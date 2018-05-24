@@ -18,12 +18,12 @@ class Casino
 
 
   def game_dice
-     if @current_user_bank >= @win_rule
+     if current_user_bank >= @win_rule
        abort "Победка"
-     elsif @current_user_bank < 0
+     elsif current_user_bank == 0
        abort "Проигрыш"
      else
-       # check_bet
+       check_bet
         player = @dice.roll_dice + @dice.roll_dice
         casino = @dice.roll_dice + @dice.roll_dice
 
@@ -38,11 +38,11 @@ class Casino
     # p "Ставка игрока #{bet}"
   end
 
-  # def check_bet
-  #   if @bet.instance_of?(Fixnum) && @bet > @current_user_bank
-  #   abort "ошибка ввода ставки"
-  #   end
-  # end
+  def check_bet
+    abort "ошибка ввода ставки, вы хотите поставить #{@bet} ваш банка #{current_user_bank}" unless @bet.instance_of?(Fixnum) && @bet <= current_user_bank
+    # abort "ошибка ввода ставки"
+    # end
+  end
 
   def result_win
     # p "совпало"
@@ -63,8 +63,6 @@ class Casino
   end
 
   def stats
-    puts "Текущий банк => #{@current_user_bank} Ставка => #{@bet} текущий раунд => #{@round} проиграл/выйграл => #{@result_bet} "
+    puts "Текущий банк => #{current_user_bank} Ставка => #{@bet} текущий раунд => #{@round} проиграл/выйграл => #{@result_bet} "
   end
 end
-
-  
