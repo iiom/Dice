@@ -3,39 +3,68 @@ require_relative 'validator'
 
 class Casino
   include Validator
-attr_accessor :user_bit, :user_bank
+
+  attr_accessor :user_bit, :round, :win_rule, :current_user_bank
+
   def initialize
-    # @user_bit = user_bit
-    @dice = Dice.new
-    @user_bank = 50
-    @win_rule = @user_bank*1.2
-    @round = 1
+    @current_user_bank = 0
+    @dice     = Dice.new
+    @win_rule = 0
+    @round    = 0
+    @bet      = 0
+    @stats    = 0
+    @result_bet = 0
   end
 
-  def auto_play
-    while check_user_bank(@user_bank, @win_rule) do
-      user_bit = @dice.roll_dice + @dice.roll_dice #это его ставка
-      casino = @dice.roll_dice + @dice.roll_dice # сам бросок казино
 
-      if check_win(user_bit, casino)
-        @user_bank += user_bit
-      else
-        @user_bank -= user_bit
+  def game_dice
+     if @current_user_bank >= @win_rule
+       abort "Победка"
+     elsif @current_user_bank < 0
+       abort "Проигрыш"
+     else
+       # check_bet
+        player = @dice.roll_dice + @dice.roll_dice
+        casino = @dice.roll_dice + @dice.roll_dice
+
+        check_win(player, casino) ? result_win : result_loos
+
+        @round += 1
       end
-
-      puts "ставка игрока #{user_bit} сумма на кубиках #{casino} \nтекущий банк #{@user_bank} на #{@round} ход"
-
-      @round += 1
     end
 
-    if @user_bank >= @win_rule
-      puts 'Победка'
-    else
-      puts 'Просрано'
-    end
+  def bet (bet)
+    @bet = bet
+    # p "Ставка игрока #{bet}"
+  end
+
+  # def check_bet
+  #   if @bet.instance_of?(Fixnum) && @bet > @current_user_bank
+  #   abort "ошибка ввода ставки"
+  #   end
+  # end
+
+  def result_win
+    # p "совпало"
+    @current_user_bank += @bet
+    @result_bet +=@bet
+  end
+
+  def result_loos
+    # p "не совпало"
+    @current_user_bank -= @bet
+    @result_bet -= @bet
+  end
+
+  def win_rule (win_rule)
+    @win_rule = (win_rule * 1.1).to_i
+    @current_user_bank = win_rule
+    # p "условия победки #{@win_rule}"
+  end
+
+  def stats
+    puts "Текущий банк => #{@current_user_bank} Ставка => #{@bet} текущий раунд => #{@round} проиграл/выйграл => #{@result_bet} "
   end
 end
-#   a = Casino.new
-# p  b = Dice.new
-# # p a.check_user_bit(@user_bit, @user_bank)
-# p @dice.roll_dice
+
+  
