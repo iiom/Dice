@@ -7,7 +7,7 @@ module Validator
   def win?(user_bank, win_rule) # проверка на возможность продолжения игры (ну или проверка условия проигрыша/победы)
     if user_bank >= win_rule
       abort "Победка"
-    else user_bank <= 0
+    elsif user_bank <= 0
       abort "Проигрыш"
     end
   end
@@ -17,3 +17,6 @@ module Validator
     current_bet.instance_of?(Fixnum) && current_bet <= user_bank && current_bet > 0
    end
 end
+include Validator
+p win?(0, 100)
+# p win?

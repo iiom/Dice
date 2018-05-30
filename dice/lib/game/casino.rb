@@ -61,7 +61,7 @@ class Casino
     end
 
     def stats
-      # puts "Текущий банк => #{@bank.user_bank} Ставка => #{@bet} текущий раунд => #{@round} проиграл/выйграл => #{@result_bet} "
+      puts "Текущий банк => #{@bank.user_bank} Ставка => #{@bet} текущий раунд => #{@round} проиграл/выйграл => #{@result_bet} "
     end
 
     def insert_money (money)
