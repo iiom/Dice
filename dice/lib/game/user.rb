@@ -8,7 +8,4 @@ class User
   def initialize
     @casino = Casino.new
   end
-
-  
-
 end

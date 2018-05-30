@@ -15,27 +15,32 @@ class Casino
     @bet        = 0          # ставка игрока
     @stats      = 0          # вывод статистики
     @result_bet = 0          # расчёт выйгрыша или проигрыша каждого раунда
+    @result     = :lose
   end
 
   def game_dice
-     if @bank.user_bank >= @win_rule
-       abort "Победка"
-     elsif @bank.user_bank == 0
-       abort "Проигрыш"
-     else
-       check_bet
-        player = @dice.roll_dice + @dice.roll_dice
-        casino = @dice.roll_dice + @dice.roll_dice
+    # проверяем на отрицательные знаечния и больше или меньше ставка от банка
+    if check_bet?(@bet, @bank.user_bank)
+    # кидаем кубики - можем себе позволить
+      player = @dice.roll_dice + @dice.roll_dice
+      casino = @dice.roll_dice + @dice.roll_dice
 
-        check_win(player, casino) ? result_win : result_loos
+      check_win(player, casino) ? result_win : result_loos
 
-        @round += 1
-      end
+      @round += 1
+    end
+
+    # и тут проверка выиграл дядя или проиграл
+    win?(@bank.user_bank, @win_rule) #??????????????????????????????????????
   end
 
-  def bet (bet)
+  def bet(bet)
+    # Вот тут было вот так if check_bet? (bet, @bank.user_bank), он пытался сравнивать check_bet? и (bet, @bank.user_bank)
+    if check_bet?(bet, @bank.user_bank)
       @bet = bet
-      # p "Ставка игрока #{bet}"
+    elsif
+      p 'eshke'
+    end
   end
 
     def result_win
@@ -52,10 +57,11 @@ class Casino
 
     def win_rule
       @win_rule = (@bank.origin_user_bank * 1.1).to_i
+      # p @win_rule
     end
 
     def stats
-      puts "Текущий банк => #{@bank.user_bank} Ставка => #{@bet} текущий раунд => #{@round} проиграл/выйграл => #{@result_bet} "
+      # puts "Текущий банк => #{@bank.user_bank} Ставка => #{@bet} текущий раунд => #{@round} проиграл/выйграл => #{@result_bet} "
     end
 
     def insert_money (money)
