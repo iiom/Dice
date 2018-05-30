@@ -1,4 +1,5 @@
 require_relative 'casino'
+require_relative 'bank'
 
 class User
 
@@ -8,9 +9,6 @@ class User
     @casino = Casino.new
   end
 
-  def insert_money (user_bank)
-      casino.win_rule(user_bank)
-      # p "Банк игрока #{user_bank}"
-  end
+  
 
 end
