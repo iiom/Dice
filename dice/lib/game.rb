@@ -2,7 +2,7 @@ require_relative 'game/user'
 
 module Game
   def self.create
-    User.new
+    UserSpec.new
   end
 end
 

@@ -1,7 +1,7 @@
 require_relative 'casino'
 require_relative 'bank'
 
-class User
+class UserSpec
 
   attr_accessor :casino
 
